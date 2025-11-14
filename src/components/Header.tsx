@@ -17,7 +17,7 @@ import {
   Notifications as NotificationsIcon,
 } from '@mui/icons-material';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface HeaderProps {
   userName?: string;
@@ -31,6 +31,7 @@ export default function Header({
   notificationCount = 3
 }: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,6 +59,7 @@ export default function Header({
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
       }}
     >
+      {/* First Row - Main Navigation */}
       <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
         <Typography
           variant="h6"
@@ -183,6 +185,147 @@ export default function Header({
           </Button>
         </Box>
       </Toolbar>
+
+      {/* Second Row - Module Navigation */}
+      <Box
+        sx={{
+          backgroundColor: '#F8FAFC',
+          borderTop: '1px solid #E2E8F0',
+          borderBottom: '1px solid #E2E8F0',
+          px: 4,
+          py: 1.5,
+        }}
+      >
+        <Box sx={{ display: 'flex', gap: 4, alignItems: 'center', justifyContent: 'center' }}>
+          <Link href="/produccion" style={{ textDecoration: 'none' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                backgroundColor: pathname?.startsWith('/produccion') ? '#DBEAFE' : 'transparent',
+                borderBottom: pathname?.startsWith('/produccion') ? '3px solid #3B82F6' : 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: '#DBEAFE',
+                  transform: 'translateY(-2px)',
+                }
+              }}
+            >
+              <Box component="span" sx={{ fontSize: '1.25rem' }}>🏭</Box>
+              <Typography
+                component="span"
+                sx={{
+                  color: '#3B82F6',
+                  fontWeight: pathname?.startsWith('/produccion') ? 700 : 600,
+                  fontSize: '0.95rem',
+                }}
+              >
+                Producción
+              </Typography>
+            </Box>
+          </Link>
+
+          <Link href="/calidad" style={{ textDecoration: 'none' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                backgroundColor: pathname?.startsWith('/calidad') ? '#D1FAE5' : 'transparent',
+                borderBottom: pathname?.startsWith('/calidad') ? '3px solid #10B981' : 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: '#D1FAE5',
+                  transform: 'translateY(-2px)',
+                }
+              }}
+            >
+              <Box component="span" sx={{ fontSize: '1.25rem' }}>✅</Box>
+              <Typography
+                component="span"
+                sx={{
+                  color: '#10B981',
+                  fontWeight: pathname?.startsWith('/calidad') ? 700 : 600,
+                  fontSize: '0.95rem',
+                }}
+              >
+                Calidad
+              </Typography>
+            </Box>
+          </Link>
+
+          <Link href="/laboratorio" style={{ textDecoration: 'none' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                backgroundColor: pathname?.startsWith('/laboratorio') ? '#E9D5FF' : 'transparent',
+                borderBottom: pathname?.startsWith('/laboratorio') ? '3px solid #8B5CF6' : 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: '#E9D5FF',
+                  transform: 'translateY(-2px)',
+                }
+              }}
+            >
+              <Box component="span" sx={{ fontSize: '1.25rem' }}>🔬</Box>
+              <Typography
+                component="span"
+                sx={{
+                  color: '#8B5CF6',
+                  fontWeight: pathname?.startsWith('/laboratorio') ? 700 : 600,
+                  fontSize: '0.95rem',
+                }}
+              >
+                Laboratorio
+              </Typography>
+            </Box>
+          </Link>
+
+          <Link href="/indicadores-kpi" style={{ textDecoration: 'none' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                backgroundColor: pathname?.startsWith('/indicadores-kpi') ? '#FEF3C7' : 'transparent',
+                borderBottom: pathname?.startsWith('/indicadores-kpi') ? '3px solid #F59E0B' : 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: '#FEF3C7',
+                  transform: 'translateY(-2px)',
+                }
+              }}
+            >
+              <Box component="span" sx={{ fontSize: '1.25rem' }}>📊</Box>
+              <Typography
+                component="span"
+                sx={{
+                  color: '#F59E0B',
+                  fontWeight: pathname?.startsWith('/indicadores-kpi') ? 700 : 600,
+                  fontSize: '0.95rem',
+                }}
+              >
+                Indicadores KPI
+              </Typography>
+            </Box>
+          </Link>
+        </Box>
+      </Box>
     </AppBar>
   );
 }
