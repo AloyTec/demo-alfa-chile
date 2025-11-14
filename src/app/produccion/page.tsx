@@ -24,17 +24,57 @@ export default function ProduccionPage() {
       sidebarBackLink="/dashboard"
       sidebarBackLabel="Volver al Dashboard"
     >
-      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
-        <Button variant="contained" startIcon={<AddIcon />} onClick={() => router.push('/produccion/nueva')}>
-          Nueva Orden
+      <Box sx={{
+        display: 'flex',
+        gap: { xs: 1, sm: 2 },
+        mb: { xs: 2, sm: 3 },
+        flexWrap: 'wrap'
+      }}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => router.push('/produccion/nueva')}
+          sx={{
+            minHeight: 44,
+            fontSize: { xs: '0.875rem', sm: '0.9375rem' },
+            px: { xs: 2, sm: 3 }
+          }}
+        >
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Nueva Orden</Box>
+          <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Nueva</Box>
         </Button>
-        <Button variant="outlined" onClick={() => router.push('/produccion/lineas')}>
+        <Button
+          variant="outlined"
+          onClick={() => router.push('/produccion/lineas')}
+          sx={{
+            minHeight: 44,
+            fontSize: { xs: '0.875rem', sm: '0.9375rem' },
+            px: { xs: 2, sm: 3 }
+          }}
+        >
           Líneas
         </Button>
-        <Button variant="outlined" onClick={() => router.push('/produccion/incidencias')}>
+        <Button
+          variant="outlined"
+          onClick={() => router.push('/produccion/incidencias')}
+          sx={{
+            minHeight: 44,
+            fontSize: { xs: '0.875rem', sm: '0.9375rem' },
+            px: { xs: 2, sm: 3 }
+          }}
+        >
           Incidencias
         </Button>
-        <Button variant="outlined" onClick={() => router.push('/produccion/materias-primas')}>
+        <Button
+          variant="outlined"
+          onClick={() => router.push('/produccion/materias-primas')}
+          sx={{
+            minHeight: 44,
+            fontSize: { xs: '0.875rem', sm: '0.9375rem' },
+            px: { xs: 2, sm: 3 },
+            display: { xs: 'none', md: 'inline-flex' }
+          }}
+        >
           Materias Primas
         </Button>
       </Box>
@@ -45,29 +85,70 @@ export default function ProduccionPage() {
           return (
             <Grid item xs={12} key={order.id}>
               <Card>
-                <CardContent>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 2 }}>
-                    <Box>
-                      <Typography variant="h6" fontWeight="bold">{order.id}</Typography>
-                      <Typography variant="body1">{order.product}</Typography>
-                      <Typography variant="body2" color="text.secondary">Lote: {order.lote} | {order.line}</Typography>
+                <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+                  <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'start',
+                    mb: 2,
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    gap: { xs: 1.5, sm: 0 }
+                  }}>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography variant="h6" fontWeight="bold" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}>
+                        {order.id}
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+                        {order.product}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
+                        Lote: {order.lote} | {order.line}
+                      </Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
-                      <Chip label={order.status} color={order.status === 'Completada' ? 'success' : 'primary'} size="small" />
-                      <Chip label={order.priority} color={order.priority === 'Alta' ? 'error' : 'default'} size="small" />
+                    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                      <Chip
+                        label={order.status}
+                        color={order.status === 'Completada' ? 'success' : 'primary'}
+                        size="small"
+                        sx={{ fontSize: { xs: '0.7rem', sm: '0.8125rem' } }}
+                      />
+                      <Chip
+                        label={order.priority}
+                        color={order.priority === 'Alta' ? 'error' : 'default'}
+                        size="small"
+                        sx={{ fontSize: { xs: '0.7rem', sm: '0.8125rem' } }}
+                      />
                     </Box>
                   </Box>
                   <Box sx={{ mb: 2 }}>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                    <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: '0.8rem', sm: '0.875rem' } }}>
                       {order.completed} / {order.quantity} unidades ({progress.toFixed(1)}%)
                     </Typography>
-                    <LinearProgress variant="determinate" value={progress} />
+                    <LinearProgress variant="determinate" value={progress} sx={{ height: { xs: 6, sm: 8 } }} />
                   </Box>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button size="small" startIcon={<VisibilityIcon />} onClick={() => router.push(`/produccion/${order.id}`)}>
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                    <Button
+                      size="small"
+                      startIcon={<VisibilityIcon />}
+                      onClick={() => router.push(`/produccion/${order.id}`)}
+                      sx={{
+                        minHeight: 36,
+                        fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                        px: { xs: 1.5, sm: 2 }
+                      }}
+                    >
                       Ver
                     </Button>
-                    <Button size="small" startIcon={<EditIcon />} onClick={() => router.push(`/produccion/${order.id}/editar`)}>
+                    <Button
+                      size="small"
+                      startIcon={<EditIcon />}
+                      onClick={() => router.push(`/produccion/${order.id}/editar`)}
+                      sx={{
+                        minHeight: 36,
+                        fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                        px: { xs: 1.5, sm: 2 }
+                      }}
+                    >
                       Editar
                     </Button>
                   </Box>
