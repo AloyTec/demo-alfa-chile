@@ -15,7 +15,7 @@ export default function ProduccionLineasPage() {
 
   return (
     <AppLayout title="Líneas de Producción" module="produccion">
-      <Grid container spacing={{ xs: 2, sm: 3 }}>
+      <Grid container spacing={3}>
         {lines.map((line) => (
           <Grid item xs={12} md={6} key={line.id}>
             <Card>

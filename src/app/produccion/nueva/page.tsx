@@ -47,7 +47,7 @@ export default function ProduccionNuevaPage() {
       <Card>
         <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={{ xs: 2, sm: 3 }}>
+            <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
